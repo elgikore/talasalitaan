@@ -3,7 +3,7 @@ import subprocess, tempfile
 
 NAME = "talasalitaan"
 
-class Tasalitaan:
+class Talasalitaan:
     """Minimal adapter for SentencePiece, built for Filipino tokenization."""
     
     def __init__(self):
