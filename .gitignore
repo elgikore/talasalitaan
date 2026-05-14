@@ -4,3 +4,4 @@ filipino_corpus/
 
 .venv/
 .vscode/
+__pycache__/
