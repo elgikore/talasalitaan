@@ -1,7 +1,7 @@
 from talasalitaan import Talasalitaan
 import json
 
-TRAIN_MODE = True
+TRAIN_MODE = False
 
 with open("settings.json", 'r', encoding="utf-8") as f:
     FOLDER_PATH = json.load(f)
@@ -16,7 +16,8 @@ sp = tokenizer.spm_instance
 texts = [
     "Kamusta, mga kababayan!", 
     "pagpapanibagong-tatag", 
-    "nakakapagpabagabag", 
+    "nakakapagpabagabag",
+    "pinakanakapagpapabagabag",
     "Magandang umaga, kapatid!",
     "Kumain siya ng pagkain.",
     "kumain ka na ba?",
