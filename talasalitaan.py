@@ -18,7 +18,7 @@ class Talasalitaan:
         self.__MODEL_PREFIX = NAME
         self.__MODEL_FILE = NAME + ".model"
         self.__MODEL_PATH = Path(__file__).parent / self.__MODEL_FILE
-        self.__VOCAB_SIZE = 16384
+        self.__VOCAB_SIZE = 32768
         
         if Path.exists(self.__MODEL_PATH):
             self.spm_instance = spm.SentencePieceProcessor(model_file=self.__MODEL_FILE)
