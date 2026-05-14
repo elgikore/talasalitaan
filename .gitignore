@@ -1,0 +1,6 @@
+settings.json
+filipino_corpus/
+*.txt
+
+.venv/
+.vscode/
