@@ -1,7 +1,7 @@
 from talasalitaan import Talasalitaan
 import json
 
-TRAIN_MODE = False
+TRAIN_MODE = True
 
 with open("settings.json", 'r', encoding="utf-8") as f:
     FOLDER_PATH = json.load(f)
