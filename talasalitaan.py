@@ -1,5 +1,6 @@
 import sentencepiece as spm
 import subprocess, tempfile
+from pathlib import Path
 
 NAME = "talasalitaan"
 
@@ -16,7 +17,10 @@ class Talasalitaan:
         """
         self.__MODEL_PREFIX = NAME
         self.__MODEL_FILE = NAME + ".model"
-        self.spm_instance = spm.SentencePieceProcessor(model_file=self.__MODEL_FILE)
+        self.__MODEL_PATH = Path(__file__).parent / self.__MODEL_FILE
+        
+        if Path.exists(self.__MODEL_PATH):
+            self.spm_instance = spm.SentencePieceProcessor(model_file=self.__MODEL_FILE)
     
     def train(self, corpus_folder: str) -> None:
         """
@@ -44,3 +48,5 @@ class Talasalitaan:
                 vocab_size=16384,      
                 model_type="bpe"
             )
+        
+        self.spm_instance = spm.SentencePieceProcessor(model_file=self.__MODEL_FILE)
