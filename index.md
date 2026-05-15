@@ -1,9 +1,9 @@
 ---
-title: Talasalitaan, or How Did a Tokenizer Performed So Well on Corpora Roughly the Size of Tiny Shakespere
+title: Talasalitaan, or How Did a Tokenizer Performed Suprisingly Well on Corpora Roughly the Size of Tiny Shakespere
 layout: page
 ---
 
-Talasalitaan (lit. vocabulary, but usage is more like a glossary/dictionary) is a vanilla BPE model from SentencePiece trained on the ![KapitBisig](https://www.kapitbisig.com/philippines) site, using only Filipino as much as possible. The entire corpus is just 1.3 MB, but as this page will show later on, it is surprisingly performant.
+Talasalitaan (lit. vocabulary, but usage is more like a glossary/dictionary) is a vanilla BPE model from SentencePiece trained on the [KapitBisig](https://www.kapitbisig.com/philippines) site, using only Filipino as much as possible. The entire corpus is just 1.3 MB, but as this page will show later on, it is surprisingly performant.
 
 The whole code for Talasalitaan is a simple SentencePiece wrapper, but the highlight of this article is the corpora, not the architecture.
 
@@ -54,3 +54,13 @@ All of these are basically what you would expect in a Filipino subject.
 Why did I model the corpus that way? This is because of a phenomenon in Deep Learning that even if AI cannot "understand" or "learn" in a strict sense like humans do, they do arrive at similar conclusions on average. If this logic is true, then it will hold up here. 
 
 ## Data Prep
+The data is manually copy-pasted and cleaned.
+
+All of the text uses Filipino versions whenever possible. Most of the English is stripped away or (rarely) translated, such as \[Chorus\] → \[Koro\] or \[Repeat from 1\] → \[Uulitin ang 1\]. The only exceptions for this are proper nouns, place names, or there is no natural alternative. This choice was made to ensure that the model learns Filipino-style word constructions first as English-style word constructions are very different.
+
+For the handling of Spanish diacritics, all of them are removed with the exception of ñ as it is part of the Filipino alphabet. Most diacritics you see in Filipino are to guide pronounciation and is used as standard practice on some Filipino textbooks, but it can be safely ignored. The only time diacritics are preserved are on Spanish proper nouns like in the four required readings.
+
+For the required readings, all of them are book summaries because the original books use the old Filipino orthography system. Some examples are n͠g for "ng" and frequent use of Spanish-influnenced orthography like *cuarto* for *kwarto* (room). Even if the Spanish-influnenced orthography of old Filipino spellings are pronounced exactly the same as their modern spelling, it is laborious to replace it with modern spellng styles and risking corrupting the text. The only exception to this rule is Florante at Laura, which conveniently has the original book in modern Filipino orthography. I used both the original book and the book summary for this as a result.
+
+Weird spacing like "  " is corrected (" "), tab spaces are stripped, unicode elipsis ("…") is expanded to "...", and the "/"'s in Sabayang Pagbigkas are removed because it is frequently occuring, which might bias the BPE. All upper and lowercase are preserved.
+
