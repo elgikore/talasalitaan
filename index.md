@@ -80,61 +80,146 @@ This proof of concept is more on reducing token cost rather than achieving full 
 All sentences are not seen during training except indicated otherwise as a quick smoke check.
 
 Sample sentences are as follows:
-1. Greeting
-   
-   > Kamusta, mga kababayan!
 
-2. Long affixes (This word is seen during training, but it acts as a sanity check on whether this model mastered it at all)
+<details>
+<summary>1. Greeting</summary>
 
-   > pagpapanibagong-tatag
+<br>
+  
+> Kamusta, mga kababayan!
 
-3. The famous tongue-twister
+<br>
+</details>
+<details>
+<summary>2. Long affixes (This word is seen during training, but it acts as a sanity check on whether this model mastered it at all)</summary>
 
-   > nakakapagpabagabag
+<br>
+  
+> pagpapanibagong-tatag
 
-4. Number 3's sidekick
+<br>
+</details>
+<details>
+<summary>3. The famous tongue-twister</summary>
 
-   > pinakanakapagpapabagabag
+<br>
+  
+> nakakapagpabagabag
 
-5. Good morning
+<br>
+</details>
+<details>
+<summary>4. Number 3's sidekick</summary>
 
-   > Magandang umaga, kapatid!
+<br>
+  
+> pinakanakapagpapabagabag
 
-6. Simple sentence
 
-   > Kumain siya ng pagkain.
+<br>
+</details>
+<details>
+<summary>5. Good morning</summary>
 
-7. Simple question
+<br>
+  
+> Magandang umaga, kapatid!
 
-    > kumain ka na ba?
 
-8. Full sentence from [KapitBisig](https://www.kapitbisig.com/philippines/information/arts-and-literature-mga-kuwentong-bayan-folktales_190.html) (This word is seen during training, but it acts as a sanity check on whether this model mastered it at all)
+<br>
+</details>
+<details>
+<summary>6. Simple sentence</summary>
 
-   > Ito ay pagsasalaysay ng mga katutubo sa kanilang paniniwalang lakas ng pisikal na kapaligiran at lakas ng pananampalataya ng lumilimbag sa kanilang buhay at kapalaran.
+<br>
+  
+> Kumain siya ng pagkain.
 
-9. Historical Wikipedia [article](https://tl.wikipedia.org/wiki/Kasaysayan_ng_Pilipinas_(1565%E2%80%931898)#Pagdating_ni_Ruy_L%C3%B3pez_de_Villalobos) sentence
 
-   > Ang unang paglalayag na pambuong mundo sa ngalan ng Espanya ay nasundan ng apat pang mga ekspedisyon mula 1525 hanggang 1542. Sa ikaapat na panggagalugad, narating ni Ruy Lopez de Villalobos ang Kapuluan ng Pilipinas at pinangalanan niya ang mga pulo mula kay Philip II na noon ay may katayuan bilang tagapagmana ng trono ng Kaharian ng Espanya, bagaman hindi pa pormal na naitatag ang Pilipinas bilang opisyal na teritoryo ng Espanya.
+<br>
+</details>
+<details>
+<summary>7. Simple question</summary>
 
-10. Declaration of Human Rights Preamble in Filipino
+<br>
+  
+> kumain ka na ba?
 
-    > Sapagkat ang pagkilala sa katutubong karangalan at sa pantay at di-maikakait na mga karapatan ng lahat ng nabibilang sa angkan ng tao ay siyang saligan ng kalayaan, katarungan at kapayapaan sa daigdig.
 
-11. [Patungkol](https://tl.wikipedia.org/wiki/Unang_Pahina#Patungkol) ng Wikipedia
+<br>
+</details>
+<details>
+<summary>8. Full sentence from <a href="https://www.kapitbisig.com/philippines/information/arts-and-literature-mga-kuwentong-bayan-folktales_190.html">KapitBisig</a> (This word is seen during training, but it acts as a sanity check on whether this model mastered it at all)</summary>
 
-    > Ang Wikipedia ay isang proyektong online na ensiklopedya na panlahat, nakasulat sa maraming wika, at pinagtutulungan ang paggawa ng mga artikulo sa prinsipyong wiki. Naglalayon ang proyektong ito na mag-alok ng mga nilalaman na malayang muling magagamit, walang pinapanigan, at napapatunayan, na maaring baguhin at mapabuti ninuman. Nakikilala ang Wikipedia sa pamamagitan ng mga naitatag na prinsipyo. Nakalisensiya ang nilalaman nito sa ilalim ng Creative Commons BY-SA. Maari itong kopyahin at muling gamitin sa ilalim ng parehong lisensiya, na sumasailalim sa paggalang sa mga kondisyon. Ibinbigay ng Wikipedia ang mga nilalaman nito ng walang bayad, walang patalastas, at hindi nagsasamantala sa paggamit ng personal na datos ng mga gumagamit nito.
+<br>
+  
+> Ito ay pagsasalaysay ng mga katutubo sa kanilang paniniwalang lakas ng pisikal na kapaligiran at lakas ng pananampalataya ng lumilimbag sa kanilang buhay at kapalaran.
 
-12. One sentence of [Nelson Mandela's speech](https://www.tagaloglang.com/talumpati-ni-nelson-mandela/) in Filipino
 
-    > Ang ating mga nagawa bilang ordinaryong mamamayan ng Timog Africa ay kailangang magbunga ng tunay na mamamayan nito na magpapalawak sa paniniwala ng sangkatauhan sa katarungan, magpapalakas sa tiwala sa kadakilaan ng kaluluwa, at magtutustos sa lahat ng ating pag-asa sa kapakinabangan ng buhay ng lahat.
+<br>
+</details>
+<details>
+<summary>9. Historical Wikipedia <a href="https://tl.wikipedia.org/wiki/Kasaysayan_ng_Pilipinas_(1565%E2%80%931898)#Pagdating_ni_Ruy_L%C3%B3pez_de_Villalobos">article</a> sentence</summary>
 
-13. [KMJS Article](https://www.gmanetwork.com/news/balitambayan/umg/987386/drawer-ng-cabinet-minulto-nga-ba-matapos-na-mahuli-cam-na-nagbukas-sara/story/ )
+<br>
+  
+> Ang unang paglalayag na pambuong mundo sa ngalan ng Espanya ay nasundan ng apat pang mga ekspedisyon mula 1525 hanggang 1542. Sa ikaapat na panggagalugad, narating ni Ruy Lopez de Villalobos ang Kapuluan ng Pilipinas at pinangalanan niya ang mga pulo mula kay Philip II na noon ay may katayuan bilang tagapagmana ng trono ng Kaharian ng Espanya, bagaman hindi pa pormal na naitatag ang Pilipinas bilang opisyal na teritoryo ng Espanya.
 
-    > Nabalot ng kababalaghan ang masaya sanang bonding ng magkakaibigan nang bigla na lang magbukas-sara na mag-isa sa kanilang harapan ang drawer ng isang cabinet. Ang kinaroroonan ng cabinet, isang bahay-bakasyunan na pinaparentahan at kamamatay lang umano ng may-ari.
 
-14. [BINI Article](https://bandera.inquirer.net/444456/bini-jhoanna-kinabog-weather-report-sa-good-day-la-achieve-sa-bucket-list)
+<br>
+</details>
+<details>
+<summary>10. Declaration of Human Rights Preamble in Filipino</summary>
 
-    > NATUPAD ang isa sa bucket list ng BINI leader na si Jhoanna Robles, habang nasa Amerika. Biglaan kasi siyang naging weather presenter nang mag-guest ang nation's girl group sa morning show na Good Day LA, kung saan una nilang ibinahagi ang kanilang makasaysayang performance sa Coachella, pati na rin ang kanilang bagong EP na Signals at nalalapit na world tour. Pero imbes na matapos lang sa chikahan, biglang nagkaroon ng nakakatuwang twist!
+<br>
+  
+> Sapagkat ang pagkilala sa katutubong karangalan at sa pantay at di-maikakait na mga karapatan ng lahat ng nabibilang sa angkan ng tao ay siyang saligan ng kalayaan, katarungan at kapayapaan sa daigdig.
+
+
+<br>
+</details>
+<details>
+<summary>11. <a href="https://tl.wikipedia.org/wiki/Unang_Pahina#Patungkol">Patungkol</a> ng Wikipedia</summary>
+
+<br>
+  
+> Ang Wikipedia ay isang proyektong online na ensiklopedya na panlahat, nakasulat sa maraming wika, at pinagtutulungan ang paggawa ng mga artikulo sa prinsipyong wiki. Naglalayon ang proyektong ito na mag-alok ng mga nilalaman na malayang muling magagamit, walang pinapanigan, at napapatunayan, na maaring baguhin at mapabuti ninuman. Nakikilala ang Wikipedia sa pamamagitan ng mga naitatag na prinsipyo. Nakalisensiya ang nilalaman nito sa ilalim ng Creative Commons BY-SA. Maari itong kopyahin at muling gamitin sa ilalim ng parehong lisensiya, na sumasailalim sa paggalang sa mga kondisyon. Ibinbigay ng Wikipedia ang mga nilalaman nito ng walang bayad, walang patalastas, at hindi nagsasamantala sa paggamit ng personal na datos ng mga gumagamit nito.
+
+
+<br>
+</details>
+<details>
+<summary>12. One sentence of <a href="https://www.tagaloglang.com/talumpati-ni-nelson-mandela/">Nelson Mandela's speech</a> in Filipino</summary>
+
+<br>
+  
+> Ang ating mga nagawa bilang ordinaryong mamamayan ng Timog Africa ay kailangang magbunga ng tunay na mamamayan nito na magpapalawak sa paniniwala ng sangkatauhan sa katarungan, magpapalakas sa tiwala sa kadakilaan ng kaluluwa, at magtutustos sa lahat ng ating pag-asa sa kapakinabangan ng buhay ng lahat.
+
+
+<br>
+</details>
+<details>
+<summary>
+13. <a href="https://www.gmanetwork.com/news/balitambayan/umg/987386/drawer-ng-cabinet-minulto-nga-ba-matapos-na-mahuli-cam-na-nagbukas-sara/story/">KMJS Article</a></summary>
+
+<br>
+  
+> Nabalot ng kababalaghan ang masaya sanang bonding ng magkakaibigan nang bigla na lang magbukas-sara na mag-isa sa kanilang harapan ang drawer ng isang cabinet. Ang kinaroroonan ng cabinet, isang bahay-bakasyunan na pinaparentahan at kamamatay lang umano ng may-ari.
+
+
+<br>
+</details>
+<details>
+<summary>
+14. <a href="https://bandera.inquirer.net/444456/bini-jhoanna-kinabog-weather-report-sa-good-day-la-achieve-sa-bucket-list">BINI Article</a></summary>
+
+<br>
+  
+> NATUPAD ang isa sa bucket list ng BINI leader na si Jhoanna Robles, habang nasa Amerika. Biglaan kasi siyang naging weather presenter nang mag-guest ang nation's girl group sa morning show na Good Day LA, kung saan una nilang ibinahagi ang kanilang makasaysayang performance sa Coachella, pati na rin ang kanilang bagong EP na Signals at nalalapit na world tour. Pero imbes na matapos lang sa chikahan, biglang nagkaroon ng nakakatuwang twist!
+
+
+<br>
+</details>
 
 # Results
 ## Tokens Used
@@ -156,6 +241,9 @@ Sample sentences are as follows:
 | 13 | 90 | 72 | 114 | ***63*** |
 | 14 | 143 | ***106*** | 199 | 139 |
 
+> **NOTE:**
+> ***Bold and italic*** is the lowest recorded token count
+
 ## Word-to-Token Ratio for Long Sentences
 
 |  Sentence № | № of Words (Theoretical Floor) | GPT-2 | GPT-4o | filipino-tokenizer | Talasalitaan 
@@ -173,22 +261,143 @@ Sample sentences are as follows:
 > Theoretical ratio is 1.0, meaning one word = one token.
 
 ## Tokens Generated By Talasalitaan
-1. `['▁Kam', 'usta', ',', '▁mga', '▁kababayan', '!']`
-2. `['▁pagpap', 'anibagong', '-', 'tatag']`
-3. `['▁nakak', 'apagp', 'abagabag']`
-4. `['▁pinakan', 'ak', 'apag', 'pap', 'abagabag']`
-5. `['▁Magandang', '▁umaga', ',', '▁kapatid', '!']`
-6. `['▁Kum', 'ain', '▁siya', '▁ng', '▁pagkain', '.']`
-7. `['▁kumain', '▁ka', '▁na', '▁ba', '?']`
-8. `['▁Ito', '▁ay', '▁pagsasalaysay', '▁ng', '▁mga', '▁katutubo', '▁sa', '▁kanilang', '▁paniniwalang', '▁lakas', '▁ng', '▁pisikal', '▁na', '▁kapaligiran', '▁at', '▁lakas', '▁ng', '▁pananampalataya', '▁ng', '▁lum', 'ilimbag', '▁sa', '▁kanilang', '▁buhay', '▁at', '▁kapalaran', '.']`
-9. `['▁Ang', '▁unang', '▁paglalayag', '▁na', '▁pamb', 'uong', '▁mundo', '▁sa', '▁ngalan', '▁ng', '▁Espanya', '▁ay', '▁nasundan', '▁ng', '▁apat', '▁pang', '▁mga', '▁eks', 'p', 'ed', 'isyon', '▁mula', '▁15', '2', '5', '▁hanggang', '▁15', '4', '2.', '▁Sa', '▁ikaapat', '▁na', '▁pangg', 'agal', 'ugad', ',', '▁narating', '▁ni', '▁R', 'uy', '▁Lopez', '▁de', '▁Vill', 'al', 'ob', 'os', '▁ang', '▁Kapuluan', '▁ng', '▁Pilipinas', '▁at', '▁pinangalan', 'an', '▁niya', '▁ang', '▁mga', '▁pulo', '▁mula', '▁kay', '▁Ph', 'ilip', '▁II', '▁na', '▁noon', '▁ay', '▁may', '▁katayuan', '▁bilang', '▁tagapagmana', '▁ng', '▁trono', '▁ng', '▁Kah', 'arian', '▁ng', '▁Espanya', ',', '▁bagaman', '▁hindi', '▁pa', '▁p', 'ormal', '▁na', '▁nait', 'atag', '▁ang', '▁Pilipinas', '▁bilang', '▁opisyal', '▁na', '▁teritoryo', '▁ng', '▁Espanya', '.']`
-10. `['▁Sapagkat', '▁ang', '▁pagkilala', '▁sa', '▁katutubong', '▁karangalan', '▁at', '▁sa', '▁pantay', '▁at', '▁di', '-', 'ma', 'ik', 'aka', 'it', '▁na', '▁mga', '▁karapatan', '▁ng', '▁lahat', '▁ng', '▁nabibilang', '▁sa', '▁angkan', '▁ng', '▁tao', '▁ay', '▁siyang', '▁saligan', '▁ng', '▁kalayaan', ',', '▁katarungan', '▁at', '▁kapayapaan', '▁sa', '▁daigdig', '.']`
-11. `['▁Ang', '▁W', 'ik', 'ipe', 'dia', '▁ay', '▁isang', '▁proy', 'ekt', 'ong', '▁on', 'l', 'ine', '▁na', '▁en', 'sik', 'l', 'op', 'edya', '▁na', '▁panlahat', ',', '▁nakasulat', '▁sa', '▁maraming', '▁wika', ',', '▁at', '▁pinagt', 'utulungan', '▁ang', '▁paggawa', '▁ng', '▁mga', '▁ar', 'tik', 'ulo', '▁sa', '▁prins', 'ipyong', '▁w', 'iki', '.', '▁Nagl', 'alayon', '▁ang', '▁proy', 'ekt', 'ong', '▁ito', '▁na', '▁mag', '-', 'alok', '▁ng', '▁mga', '▁nilalaman', '▁na', '▁malayang', '▁muling', '▁magagamit', ',', '▁walang', '▁pinapan', 'igan', ',', '▁at', '▁napapat', 'unayan', ',', '▁na', '▁maaring', '▁baguhin', '▁at', '▁map', 'abuti', '▁ninuman', '.', '▁Nakikilala', '▁ang', '▁W', 'ik', 'ipe', 'dia', '▁sa', '▁pamamagitan', '▁ng', '▁mga', '▁nait', 'atag', '▁na', '▁prins', 'ip', 'yo', '.', '▁Nak', 'alis', 'ensiya', '▁ang', '▁nilalaman', '▁nito', '▁sa', '▁ilalim', '▁ng', '▁C', 're', 'ative', '▁Comm', 'ons', '▁B', 'Y', '-', 'SA', '.', '▁Maari', '▁itong', '▁ko', 'p', 'y', 'ahin', '▁at', '▁muling', '▁gamitin', '▁sa', '▁ilalim', '▁ng', '▁parehong', '▁l', 'is', 'ensiya', ',', '▁na', '▁sumasa', 'ilalim', '▁sa', '▁paggalang', '▁sa', '▁mga', '▁kondisyon', '.', '▁Ibin', 'bigay', '▁ng', '▁W', 'ik', 'ipe', 'dia', '▁ang', '▁mga', '▁nilalaman', '▁nito', '▁ng', '▁walang', '▁bayad', ',', '▁walang', '▁pat', 'alastas', ',', '▁at', '▁hindi', '▁nagsas', 'amantala', '▁sa', '▁paggamit', '▁ng', '▁personal', '▁na', '▁datos', '▁ng', '▁mga', '▁gumagamit', '▁nito', '.']`
-12. `['▁Ang', '▁ating', '▁mga', '▁nagawa', '▁bilang', '▁ordin', 'aryong', '▁mamamayan', '▁ng', '▁Timog', '▁A', 'f', 'r', 'ica', '▁ay', '▁kailangang', '▁magbunga', '▁ng', '▁tunay', '▁na', '▁mamamayan', '▁nito', '▁na', '▁magpap', 'alawak', '▁sa', '▁paniniwala', '▁ng', '▁sangkatauhan', '▁sa', '▁katarungan', ',', '▁magpap', 'alakas', '▁sa', '▁tiwala', '▁sa', '▁kadakilaan', '▁ng', '▁kaluluwa', ',', '▁at', '▁magtut', 'ustos', '▁sa', '▁lahat', '▁ng', '▁ating', '▁pag', '-', 'asa', '▁sa', '▁kapakinabangan', '▁ng', '▁buhay', '▁ng', '▁lahat', '.']`
-13. `['▁Nab', 'alot', '▁ng', '▁kababalaghan', '▁ang', '▁masaya', '▁sanang', '▁b', 'on', 'ding', '▁ng', '▁magkakaibigan', '▁nang', '▁bigla', '▁na', '▁lang', '▁magbukas', '-', 's', 'ara', '▁na', '▁mag', '-', 'isa', '▁sa', '▁kanilang', '▁harapan', '▁ang', '▁dr', 'aw', 'er', '▁ng', '▁isang', '▁c', 'abin', 'et', '.', '▁Ang', '▁kinaroroonan', '▁ng', '▁c', 'abin', 'et', ',', '▁isang', '▁bahay', '-', 'bakasyunan', '▁na', '▁pinap', 'ar', 'ent', 'ahan', '▁at', '▁kam', 'amatay', '▁lang', '▁umano', '▁ng', '▁may', '-', 'ari', '.']`
-14. `['▁N', 'AT', 'UP', 'AD', '▁ang', '▁isa', '▁sa', '▁bu', 'c', 'ket', '▁l', 'ist', '▁ng', '▁B', 'INI', '▁le', 'ad', 'er', '▁na', '▁si', '▁J', 'ho', 'an', 'na', '▁R', 'ob', 'les', ',', '▁habang', '▁nasa', '▁Amerika', '.', '▁B', 'igl', 'aan', '▁kasi', '▁siyang', '▁naging', '▁w', 'eat', 'h', 'er', '▁pres', 'enter', '▁nang', '▁mag', '-', 'g', 'uest', '▁ang', '▁nat', 'ion', "'", 's', '▁g', 'ir', 'l', '▁g', 'ro', 'up', '▁sa', '▁m', 'orn', 'ing', '▁s', 'h', 'ow', '▁na', '▁G', 'ood', '▁Day', '▁L', 'A', ',', '▁kung', '▁saan', '▁una', '▁nilang', '▁ibin', 'ahagi', '▁ang', '▁kanilang', '▁makasaysayang', '▁per', 'f', 'or', 'man', 'ce', '▁sa', '▁Co', 'ach', 'el', 'la', ',', '▁pati', '▁na', '▁rin', '▁ang', '▁kanilang', '▁bagong', '▁E', 'P', '▁na', '▁"', 'Sig', 'nal', 's', '"', '▁at', '▁nal', 'alapit', '▁na', '▁w', 'or', 'l', 'd', '▁to', 'ur', '.', '▁Pero', '▁imb', 'es', '▁na', '▁matapos', '▁lang', '▁sa', '▁c', 'hik', 'ahan', ',', '▁biglang', '▁nagkaroon', '▁ng', '▁nakakat', 'uwang', '▁t', 'w', 'ist', '!']`
+<details>
+<summary>Sentence №1</summary>
+
+    ['▁Kam', 'usta', ',', '▁mga', '▁kababayan', '!']
+
+</details>
+<details>
+<summary>Sentence №2</summary>
+
+    ['▁pagpap', 'anibagong', '-', 'tatag']
+
+</details>
+<details>
+<summary>Sentence №3</summary>
+
+    ['▁nakak', 'apagp', 'abagabag']
+
+</details>
+<details>
+<summary>Sentence №4</summary>
+
+    ['▁pinakan', 'ak', 'apag', 'pap', 'abagabag']
+
+</details>
+<details>
+<summary>Sentence №5</summary>
+
+    ['▁Magandang', '▁umaga', ',', '▁kapatid', '!']
+
+</details>
+<details>
+<summary>Sentence №6</summary>
+
+    ['▁Kum', 'ain', '▁siya', '▁ng', '▁pagkain', '.']
+
+</details>
+<details>
+<summary>Sentence №7</summary>
+
+    ['▁kumain', '▁ka', '▁na', '▁ba', '?']
+
+</details>
+<details>
+<summary>Sentence №8</summary>
+
+    ['▁Ito', '▁ay', '▁pagsasalaysay', '▁ng', '▁mga', '▁katutubo', '▁sa', '▁kanilang', '▁paniniwalang',
+    '▁lakas', '▁ng', '▁pisikal', '▁na', '▁kapaligiran', '▁at', '▁lakas', '▁ng', '▁pananampalataya', '▁ng',
+    '▁lum', 'ilimbag', '▁sa', '▁kanilang', '▁buhay', '▁at', '▁kapalaran', '.']
+
+</details>
+<details>
+<summary>Sentence №9</summary>
+
+    ['▁Ang', '▁unang', '▁paglalayag', '▁na', '▁pamb', 'uong', '▁mundo', '▁sa', '▁ngalan', '▁ng',
+    '▁Espanya', '▁ay', '▁nasundan', '▁ng', '▁apat', '▁pang', '▁mga', '▁eks', 'p', 'ed', 'isyon', '▁mula',
+    '▁15', '2', '5', '▁hanggang', '▁15', '4', '2.', '▁Sa', '▁ikaapat', '▁na', '▁pangg', 'agal', 'ugad',
+    ',', '▁narating', '▁ni', '▁R', 'uy', '▁Lopez', '▁de', '▁Vill', 'al', 'ob', 'os', '▁ang', '▁Kapuluan',
+    '▁ng', '▁Pilipinas', '▁at', '▁pinangalan', 'an', '▁niya', '▁ang', '▁mga', '▁pulo', '▁mula', '▁kay',
+    '▁Ph', 'ilip', '▁II', '▁na', '▁noon', '▁ay', '▁may', '▁katayuan', '▁bilang', '▁tagapagmana', '▁ng',
+    '▁trono', '▁ng', '▁Kah', 'arian', '▁ng', '▁Espanya', ',', '▁bagaman', '▁hindi', '▁pa', '▁p', 'ormal',
+    '▁na', '▁nait', 'atag', '▁ang', '▁Pilipinas', '▁bilang', '▁opisyal', '▁na', '▁teritoryo', '▁ng',
+    '▁Espanya', '.']
+
+</details>
+<details>
+<summary>Sentence №10</summary>
+
+    ['▁Sapagkat', '▁ang', '▁pagkilala', '▁sa', '▁katutubong', '▁karangalan', '▁at', '▁sa', '▁pantay',
+    '▁at', '▁di', '-', 'ma', 'ik', 'aka', 'it', '▁na', '▁mga', '▁karapatan', '▁ng', '▁lahat', '▁ng',
+    '▁nabibilang', '▁sa', '▁angkan', '▁ng', '▁tao', '▁ay', '▁siyang', '▁saligan', '▁ng', '▁kalayaan',
+    ',', '▁katarungan', '▁at', '▁kapayapaan', '▁sa', '▁daigdig', '.']
+
+</details>
+<details>
+<summary>Sentence №11</summary>
+
+    ['▁Ang', '▁W', 'ik', 'ipe', 'dia', '▁ay', '▁isang', '▁proy', 'ekt', 'ong', '▁on', 'l', 'ine', 
+    '▁na', '▁en', 'sik', 'l', 'op', 'edya', '▁na', '▁panlahat', ',', '▁nakasulat', '▁sa', '▁maraming'
+    , '▁wika', ',', '▁at', '▁pinagt', 'utulungan', '▁ang', '▁paggawa', '▁ng', '▁mga', '▁ar', 'tik',
+    'ulo', '▁sa', '▁prins', 'ipyong', '▁w', 'iki', '.', '▁Nagl', 'alayon', '▁ang', '▁proy', 'ekt',
+    'ong', '▁ito', '▁na', '▁mag', '-', 'alok', '▁ng', '▁mga', '▁nilalaman', '▁na', '▁malayang',
+    '▁muling', '▁magagamit', ',', '▁walang', '▁pinapan', 'igan', ',', '▁at', '▁napapat', 'unayan',
+    ',', '▁na', '▁maaring', '▁baguhin', '▁at', '▁map', 'abuti', '▁ninuman', '.', '▁Nakikilala', '▁ang',
+    '▁W', 'ik', 'ipe', 'dia', '▁sa', '▁pamamagitan', '▁ng', '▁mga', '▁nait', 'atag', '▁na', '▁prins',
+    'ip', 'yo', '.', '▁Nak', 'alis', 'ensiya', '▁ang', '▁nilalaman', '▁nito', '▁sa', '▁ilalim', '▁ng',
+    '▁C', 're', 'ative', '▁Comm', 'ons', '▁B', 'Y', '-', 'SA', '.', '▁Maari', '▁itong', '▁ko', 'p',
+    'y', 'ahin', '▁at', '▁muling', '▁gamitin', '▁sa', '▁ilalim', '▁ng', '▁parehong', '▁l', 'is', 
+    'ensiya', ',', '▁na', '▁sumasa', 'ilalim', '▁sa', '▁paggalang', '▁sa', '▁mga', '▁kondisyon', '.',
+    '▁Ibin', 'bigay', '▁ng', '▁W', 'ik', 'ipe', 'dia', '▁ang', '▁mga', '▁nilalaman', '▁nito', '▁ng',
+    '▁walang', '▁bayad', ',', '▁walang', '▁pat', 'alastas', ',', '▁at', '▁hindi', '▁nagsas',
+    'amantala', '▁sa', '▁paggamit', '▁ng', '▁personal', '▁na', '▁datos', '▁ng', '▁mga', '▁gumagamit',
+    '▁nito', '.']
+
+</details>
+<details>
+<summary>Sentence №12</summary>
+
+    ['▁Ang', '▁ating', '▁mga', '▁nagawa', '▁bilang', '▁ordin', 'aryong', '▁mamamayan', '▁ng', '▁Timog',
+    '▁A', 'f', 'r', 'ica', '▁ay', '▁kailangang', '▁magbunga', '▁ng', '▁tunay', '▁na', '▁mamamayan',
+    '▁nito', '▁na', '▁magpap', 'alawak', '▁sa', '▁paniniwala', '▁ng', '▁sangkatauhan', '▁sa',
+    '▁katarungan', ',', '▁magpap', 'alakas', '▁sa', '▁tiwala', '▁sa', '▁kadakilaan', '▁ng', '▁kaluluwa',
+    ',', '▁at', '▁magtut', 'ustos', '▁sa', '▁lahat', '▁ng', '▁ating', '▁pag', '-', 'asa', '▁sa',
+    '▁kapakinabangan', '▁ng', '▁buhay', '▁ng', '▁lahat', '.']
+
+</details>
+<details>
+<summary>Sentence №13</summary>
+
+    ['▁Nab', 'alot', '▁ng', '▁kababalaghan', '▁ang', '▁masaya', '▁sanang', '▁b', 'on', 'ding', '▁ng',
+    '▁magkakaibigan', '▁nang', '▁bigla', '▁na', '▁lang', '▁magbukas', '-', 's', 'ara', '▁na', '▁mag',
+    '-', 'isa', '▁sa', '▁kanilang', '▁harapan', '▁ang', '▁dr', 'aw', 'er', '▁ng', '▁isang', '▁c',
+    'abin', 'et', '.', '▁Ang', '▁kinaroroonan', '▁ng', '▁c', 'abin', 'et', ',', '▁isang', '▁bahay',
+    '-', 'bakasyunan', '▁na', '▁pinap', 'ar', 'ent', 'ahan', '▁at', '▁kam', 'amatay', '▁lang',
+    '▁umano', '▁ng', '▁may', '-', 'ari', '.']
+
+</details>
+<details>
+<summary>Sentence №14</summary>
+
+    ['▁N', 'AT', 'UP', 'AD', '▁ang', '▁isa', '▁sa', '▁bu', 'c', 'ket', '▁l', 'ist', '▁ng', '▁B', 'INI',
+    '▁le', 'ad', 'er', '▁na', '▁si', '▁J', 'ho', 'an', 'na', '▁R', 'ob', 'les', ',', '▁habang', '▁nasa',
+    '▁Amerika', '.', '▁B', 'igl', 'aan', '▁kasi', '▁siyang', '▁naging', '▁w', 'eat', 'h', 'er', '▁pres',
+    'enter', '▁nang', '▁mag', '-', 'g', 'uest', '▁ang', '▁nat', 'ion', "'", 's', '▁g', 'ir', 'l', '▁g',
+    'ro', 'up', '▁sa', '▁m', 'orn', 'ing', '▁s', 'h', 'ow', '▁na', '▁G', 'ood', '▁Day', '▁L', 'A', ',',
+    '▁kung', '▁saan', '▁una', '▁nilang', '▁ibin', 'ahagi', '▁ang', '▁kanilang', '▁makasaysayang', '▁per',
+    'f', 'or', 'man', 'ce', '▁sa', '▁Co', 'ach', 'el', 'la', ',', '▁pati', '▁na', '▁rin', '▁ang',
+    '▁kanilang', '▁bagong', '▁E', 'P', '▁na', '▁"', 'Sig', 'nal', 's', '"', '▁at', '▁nal', 'alapit',
+    '▁na', '▁w', 'or', 'l', 'd', '▁to', 'ur', '.', '▁Pero', '▁imb', 'es', '▁na', '▁matapos', '▁lang',
+    '▁sa', '▁c', 'hik', 'ahan', ',', '▁biglang', '▁nagkaroon', '▁ng', '▁nakakat', 'uwang', '▁t', 'w',
+    'ist', '!']
+
+</details>
 
 ## First and last 100 tokens
+
+<details>
+<summary>Token vocabulary</summary>
 
 |  First 100 | Last 100 |
 | ------------- | ------------- |
@@ -293,6 +502,9 @@ Sample sentences are as follows:
 | ur	-98 |		▁natutularan	-32692
 | ot	-99	 |	▁natutulayan	-32693
 | ▁siya	-100 |		▁natututuhan	-32694
+
+</details>
+
 
 > **NOTE:**
 > It is interesting that at the tail end of the `.vocab` file, it still produced meaningful tokens for most of them.
