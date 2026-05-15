@@ -3,11 +3,11 @@ title: Talasalitaan, or How Did a Tokenizer Performed Suprisingly Well on Corpor
 layout: page
 ---
 
-Talasalitaan (lit. vocabulary, but usage is more like a glossary/dictionary) is a vanilla BPE model from SentencePiece trained on the [KapitBisig](https://www.kapitbisig.com/philippines) site, using only Filipino as much as possible. The entire corpus is just 1.3 MB, but as this page will show later on, it is surprisingly performant.
+Talasalitaan (lit. vocabulary, but usage is more like a glossary/dictionary) is a vanilla BPE model from SentencePiece trained on the [KapitBisig](https://www.kapitbisig.com/philippines) site, using only Filipino as much as possible. The entire corpus is just 1.3 MB, but as this page will show later on, it is surprisingly performant. Token counts are also reduced.
 
 The whole code for Talasalitaan is a simple SentencePiece wrapper, but the highlight of this article is the corpora, not the architecture.
 
-## Some Backstory
+# Some Backstory
 I was doing an assingment for COMP423 Deep Learning subject, and one of the assignment is to build a GPT-like arctecture with only PyTorch, tokenized using GPT-2 `tiktoken` and train it on the Tiny Shakespere corpus. As I made that assignment, doing Shakespere texts is pretty analogous to doing your Rizal, Noli Me Tangere, and El Filibusterismo in Filipino textbooks. And that's where I thought, 
 
 > "Why not do this for Rizal texts as well? It fits the bill though."
@@ -20,6 +20,7 @@ Another conundrum is that having a small context size will make monsters of a wo
 
 I thought, why not deal with it at the source, and compress tokens? Look at common English words in OpenAI tokenizers, there are treated as one token. If it is decomposable, maybe a few tokens at most. This is my mindset when creating a "Filipino-aware" tokenizer. The good thing is that, unlike English, prefixes/infixes/suffixes are **very** predicable and rarely has exceptions.
 
+# Data
 ## Choice of Corpus
 Everybody says "you just scrape more from Common Crawl" or "curate your data", which is both true. The former understands the reality of AI as data-hungry monsters, and the latter to having representativeness and quality in the model. But what if we model the corpus similar to how a human acquires and masters a language, which is through textbooks, some history, local references, oral traditions, and culture? This is where KapitBisig comes in.
 
@@ -64,3 +65,10 @@ For the required readings, all of them are book summaries because the original b
 
 Weird spacing like "  " is corrected (" "), tab spaces are stripped, unicode elipsis ("…") is expanded to "...", and the "/"'s in Sabayang Pagbigkas are removed because it is frequently occuring, which might bias the BPE. All upper and lowercase are preserved.
 
+# Some RRL
+Initially, I was going to compare mine with GPT-2 and GPT-4o tokenizers to test performance, as I don't believe that there is a specialized Filipino tokenizer. But for completeness sake, I researched "Filipino Tokenizers" on GitHub, and it actually has results, but only one fits the idea which is JpCurada's [`filipino-tokenizer`](https://github.com/JpCurada/filipino-tokenizer). It describes itself as the "first open-source, morphologically-aware subword tokenize for Philippine languages". It is a BPE with handwritten rules for prefixes/infixes/suffixes made in Python and part Rust. The presence of this repo alone makes it possible to compare apples to apples with aside from apples to green apples (not oranges as OpenAI GPT models use BPE).
+
+# Limitations
+It doesn't perform well in English words, which is expected for a tokenizer that is trained on mainly Filipino words ~99% of the time. It also doesn't aim to be "morphologically accurate" like in JpCurada's case as I let the data speak to itself during training -- which merges are valuable is for BPE to decide statistically. This is because I am confident that even BPE can pick up very common prefix/infix/suffix styles in Filipino since they are ubiquitous in everyday speech and writing, whether it is simple or stacked affixing.
+
+This proof of concept is more on reducing token cost rather than achieving full linguistic coverage across all Philippine languages. 
