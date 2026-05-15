@@ -115,7 +115,7 @@ Sample sentences are as follows:
 
 10. Declaration of Human Rights Preamble in Filipino
 
-    > "Sapagkat ang pagkilala sa katutubong karangalan at sa pantay at di-maikakait na mga karapatan ng lahat ng nabibilang sa angkan ng tao ay siyang saligan ng kalayaan, katarungan at kapayapaan sa daigdig."
+    > Sapagkat ang pagkilala sa katutubong karangalan at sa pantay at di-maikakait na mga karapatan ng lahat ng nabibilang sa angkan ng tao ay siyang saligan ng kalayaan, katarungan at kapayapaan sa daigdig.
 
 11. [Patungkol](https://tl.wikipedia.org/wiki/Unang_Pahina#Patungkol) ng Wikipedia
 
@@ -132,3 +132,22 @@ Sample sentences are as follows:
 14. [BINI Article](https://bandera.inquirer.net/444456/bini-jhoanna-kinabog-weather-report-sa-good-day-la-achieve-sa-bucket-list)
 
     > NATUPAD ang isa sa bucket list ng BINI leader na si Jhoanna Robles, habang nasa Amerika. Biglaan kasi siyang naging weather presenter nang mag-guest ang nation's girl group sa morning show na Good Day LA, kung saan una nilang ibinahagi ang kanilang makasaysayang performance sa Coachella, pati na rin ang kanilang bagong EP na Signals at nalalapit na world tour. Pero imbes na matapos lang sa chikahan, biglang nagkaroon ng nakakatuwang twist!
+
+# Results
+## Tokens Used
+|  Sentence № | GPT-2 | GPT-4o | filipino-tokenizer | Talasalitaan 
+| ------------- | ------------- | ------------- | ------------- | ------------- |
+| 1  | 12  | 8  | 9  | ***6***  |
+| 2  | 11  | 8  | 7  | ***4***  |
+| 3  | 10  | 6  | 7  | ***3***  |
+| 4  | 12  | 7  | ***3***  | 5  |
+| 5  | 11  | 8  | 11  | ***5***  |
+| 6  | 10  | 7  | 14  | ***6***  |
+| 7  | 7  | 6  | 12  | ***5***  |
+| 8  | 69  | 46  | 81  | ***27***  |
+| 9  | 150  | 120  | 192  | ***94***  |
+| 10  | 78  | 59  | 99  | ***39***  |
+| 11  | 269  | 192  | 324  | ***174***  |
+| 12  | 115  | 85  | 144  | ***58***  |
+| 13  | 90  | 72  | 114  | ***63***  |
+| 14  | 143  | ***106***  | 199  | 139  |
