@@ -138,6 +138,7 @@ Sample sentences are as follows:
 
 # Results
 ## Tokens Used
+
 |  Sentence № | GPT-2 | GPT-4o | filipino-tokenizer | Talasalitaan 
 | ------------- | ------------- | ------------- | ------------- | ------------- |
 | 1  | 12  | 8  | 9  | ***6***  |
@@ -156,6 +157,7 @@ Sample sentences are as follows:
 | 14  | 143  | ***106***  | 199  | 139  |
 
 ## Word-to-Token Ratio for Long Sentences
+
 |  Sentence № | № of Words (Theoretical Floor) | GPT-2 | GPT-4o | filipino-tokenizer | Talasalitaan 
 | ------------- | ------------- | ------------- | ------------- | ------------- | ------------- |
 | 8  | 25  | 2.76  | 1.84  | 3.24  | ***1.08***  |
@@ -186,6 +188,7 @@ Sample sentences are as follows:
 14. `['▁N', 'AT', 'UP', 'AD', '▁ang', '▁isa', '▁sa', '▁bu', 'c', 'ket', '▁l', 'ist', '▁ng', '▁B', 'INI', '▁le', 'ad', 'er', '▁na', '▁si', '▁J', 'ho', 'an', 'na', '▁R', 'ob', 'les', ',', '▁habang', '▁nasa', '▁Amerika', '.', '▁B', 'igl', 'aan', '▁kasi', '▁siyang', '▁naging', '▁w', 'eat', 'h', 'er', '▁pres', 'enter', '▁nang', '▁mag', '-', 'g', 'uest', '▁ang', '▁nat', 'ion', "'", 's', '▁g', 'ir', 'l', '▁g', 'ro', 'up', '▁sa', '▁m', 'orn', 'ing', '▁s', 'h', 'ow', '▁na', '▁G', 'ood', '▁Day', '▁L', 'A', ',', '▁kung', '▁saan', '▁una', '▁nilang', '▁ibin', 'ahagi', '▁ang', '▁kanilang', '▁makasaysayang', '▁per', 'f', 'or', 'man', 'ce', '▁sa', '▁Co', 'ach', 'el', 'la', ',', '▁pati', '▁na', '▁rin', '▁ang', '▁kanilang', '▁bagong', '▁E', 'P', '▁na', '▁"', 'Sig', 'nal', 's', '"', '▁at', '▁nal', 'alapit', '▁na', '▁w', 'or', 'l', 'd', '▁to', 'ur', '.', '▁Pero', '▁imb', 'es', '▁na', '▁matapos', '▁lang', '▁sa', '▁c', 'hik', 'ahan', ',', '▁biglang', '▁nagkaroon', '▁ng', '▁nakakat', 'uwang', '▁t', 'w', 'ist', '!']`
 
 ## First and last 100 tokens
+
 |  First 100 | Last 100 |
 | ------------- | ------------- |
 | ng	0	| ▁napasabihan	-32594
