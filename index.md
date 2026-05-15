@@ -19,7 +19,7 @@ but I quickly realized, even the state of the art (SOTA) LLMs are still ineffici
 
 Later on, while doing the assignment, and after painful debugging, I commonly run into `OutOfMemoryError`s in PyTorch (on a 4070 GPU nonetheless) while experimenting with hyperparameters. One of the things that bloat memory is the context size. Sure increasing the size attends to more tokens but Attention has a quadratic memory complexity, which is catastrophic as the number of tokens grows.
 
-Another conundrum is that having a small context size will make monsters of a word like *nakakapagpabagabag* (worrisome) harder to capture in an Attention layer just because of the sheer number of tokens needed (10 in GPT-2) -- and that's only one word. What if it is part of a long sentence, since there are pretty common long Filipino words like *kinaroroonan* (whereabouts/current location)? What if it is *pinakanakakapagpabagabag* (most worrisome) that will make PyTorch very worried that you allocated 9 GB on a 8 GB GPU? Imagine all of this when parsing Filipino text to an LLM instead of training Tiny Shakespere, for which my GPU struggled with the latter when scaling hyperparameters.
+Another conundrum is that having a small context size will make monsters of a word like *nakakapagpabagabag* (worrisome) harder to capture in an Attention layer just because of the sheer number of tokens needed (10 in GPT-2) — and that's only one word. What if it is part of a long sentence, since there are pretty common long Filipino words like *kinaroroonan* (whereabouts/current location)? What if it is *pinakanakakapagpabagabag* (most worrisome) that will make PyTorch very worried that you allocated 9 GB on a 8 GB GPU? Imagine all of this when parsing Filipino text to an LLM instead of training Tiny Shakespere, for which my GPU struggled with the latter when scaling hyperparameters.
 
 I thought, why not deal with it at the source, and compress tokens? Look at common English words in OpenAI tokenizers, there are treated as one token. If it is decomposable, maybe a few tokens at most. This is my mindset when creating a "Filipino-aware" tokenizer. The good thing is that, unlike English, prefixes/infixes/suffixes are **very** predicable and rarely has exceptions.
 
@@ -72,7 +72,7 @@ Weird spacing like "  " is corrected (" "), tab spaces are stripped, unicode eli
 Initially, I was going to compare mine with GPT-2 and GPT-4o tokenizers to test performance, as I don't believe that there is a specialized Filipino tokenizer. But for completeness sake, I researched "Filipino Tokenizers" on GitHub, and it actually has results, but only one fits the idea which is JpCurada's [`filipino-tokenizer`](https://github.com/JpCurada/filipino-tokenizer). It describes itself as the "first open-source, morphologically-aware subword tokenize for Philippine languages". It is a BPE with handwritten rules for prefixes/infixes/suffixes made in Python and part Rust. The presence of this repo alone makes it possible to compare apples to apples with aside from apples to green apples (not oranges as OpenAI GPT models use BPE).
 
 # Limitations
-It doesn't perform well in English words, which is expected for a tokenizer that is trained on mainly Filipino words ~99.9% of the time. It also doesn't aim to be "morphologically accurate" like in JpCurada's case as I let the data speak to itself during training -- which merges are valuable is for BPE to decide statistically. This is because I am confident that even BPE can pick up very common prefix/infix/suffix styles in Filipino since they are ubiquitous in everyday speech and writing, whether it is simple or stacked affixing.
+It doesn't perform well in English words, which is expected for a tokenizer that is trained on mainly Filipino words ~99.9% of the time. It also doesn't aim to be "morphologically accurate" like in JpCurada's case as I let the data speak to itself during training — which merges are valuable is for BPE to decide statistically. This is because I am confident that even BPE can pick up very common prefix/infix/suffix styles in Filipino since they are ubiquitous in everyday speech and writing, whether it is simple or stacked affixing.
 
 This proof of concept is more on reducing token cost rather than achieving full linguistic coverage across all Philippine languages. 
 
@@ -113,7 +113,7 @@ Sample sentences are as follows:
 
 <br>
   
-> pinakanakapagpapabagabag
+> pinakanakakapagpabagabag
 
 
 <br>
@@ -229,7 +229,7 @@ Sample sentences are as follows:
 | 1 | 12 | 8 | 9 | ***6*** |
 | 2 | 11 | 8 | 7 | ***4*** |
 | 3 | 10 | 6 | 7 | ***3*** |
-| 4 | 12 | 7 | ***3*** | 5 |
+| 4 | 12 | 8 | 9 | ***5*** |
 | 5 | 11 | 8 | 11 | ***5*** |
 | 6 | 10 | 7 | 14 | ***6*** |
 | 7 | 7 | 6 | 12 | ***5*** |
@@ -282,7 +282,7 @@ Sample sentences are as follows:
 <details>
 <summary>Sentence №4</summary>
 
-    ['▁pinakan', 'ak', 'apag', 'pap', 'abagabag']
+    ['▁pinakan', 'ak', 'ak', 'apagp', 'abagabag']
 
 </details>
 <details>
@@ -393,6 +393,7 @@ Sample sentences are as follows:
     'ist', '!']
 
 </details>
+<br>
 
 ## First and last 100 tokens
 
@@ -504,7 +505,35 @@ Sample sentences are as follows:
 | ▁siya	-100 |		▁natututuhan	-32694
 
 </details>
-
+<br>
 
 > **NOTE:**
 > It is interesting that at the tail end of the `.vocab` file, it still produced meaningful tokens for most of them.
+
+# Discussion
+## Tokens Used and Word-to-Token Ratio
+For the sample sentences, Talasalitaan consistently showed huge reductions on token savings despite being trained on just one site, with the only sentence that it struggled with is the BINI article sentence, which is full of Taglish construction and pure English words, something GPT-4o had the upper edge in token count due to how it is trained on English corpora. 
+
+The most interesting part is that filipino-tokenizer behaved pretty differently on alternative spelling of *pinakanakakapagpabagabag*, which is *pinakanakapagpapabagabag*. I thought I made a typo on it because it is so long, so I corrected it (all results above use *pinakanakakapagpabagabag*), but it is actually a variation when I double-checked on a Filipino dictionary. Look:
+
+*pinakanakapagpapabagabag* (variational spelling):
+
+    ['pinaka', 'nakapagpapa', 'bagabag']                 # filipino-tokenizer
+    ['▁pinakan', 'ak', 'apag', 'pap', 'abagabag']        # Talasalitaan
+
+*pinakanakakapagpabagabag* (common spelling):
+
+    ['pinaka', '▁', 'nakaka', '▁', 'pag', '▁', 'pa', '▁', 'bagabag']    # filipino-tokenizer
+    ['▁pinakan', 'ak', 'ak', 'apagp', 'abagabag']                       # Talasalitaan
+
+Even on a supposed "typo", which in reality is an alternative form, Talasalitaan is robust to it. Still 5 tokens. It had generalized Filipino text very well. Moreover, GPT-2 was not affected by the change either, but GPT-4o only added one more token (7 → 8), yet it is still nowhere near `filipino-tokenizer`'s jump from 3 to 9.
+
+The reason why `filipino-tokenizer` behaves this way is because it enforces the same rules for affix construction in Filipino, which is how humans parse words as syllables, making it very interpretable. But in the eyes of Attention, it is just more tokens to process, which hurt performance if the context window is limited due to VRAM constraints, making `OutOfMemoryError`s more frequent when scaling a potential AI model. Futhermore, limited "effective" context window due to bloated tokens decrease long-range dependencies, making models "forget" more often.
+
+Attention doesn't learn the same way as humans do; they only process tokens at the end of the day, inferring meaning from surronding tokens from pure statistics — basically context clues for AI. It just says, "Ah, A usually goes with B, so the next time I see it, it is more probably A and B, and score it higher". BPE also does the same but instead of scoring, it is merging common affix-like constructions like Huffman encoding.
+
+Another reason why `filipino-tokenizer` bloats more tokens is that both morpheme boundaries and literal whitespace are counted as separate tokens. It is like counting the dashes when you syllabicate pinaka-nakaka-pag-pa-bagabag and not splitting spaces.
+
+In conclusion, Talasalitaan has a strong generalization on Filipino, but knows what its boundaries are, as seen in the BINI article and any English words — it fragments them like how English-centric tokenizers fragment non-English words.
+
+## Inspecting Token Generation and Token Dictionary
