@@ -69,6 +69,66 @@ Weird spacing like "  " is corrected (" "), tab spaces are stripped, unicode eli
 Initially, I was going to compare mine with GPT-2 and GPT-4o tokenizers to test performance, as I don't believe that there is a specialized Filipino tokenizer. But for completeness sake, I researched "Filipino Tokenizers" on GitHub, and it actually has results, but only one fits the idea which is JpCurada's [`filipino-tokenizer`](https://github.com/JpCurada/filipino-tokenizer). It describes itself as the "first open-source, morphologically-aware subword tokenize for Philippine languages". It is a BPE with handwritten rules for prefixes/infixes/suffixes made in Python and part Rust. The presence of this repo alone makes it possible to compare apples to apples with aside from apples to green apples (not oranges as OpenAI GPT models use BPE).
 
 # Limitations
-It doesn't perform well in English words, which is expected for a tokenizer that is trained on mainly Filipino words ~99% of the time. It also doesn't aim to be "morphologically accurate" like in JpCurada's case as I let the data speak to itself during training -- which merges are valuable is for BPE to decide statistically. This is because I am confident that even BPE can pick up very common prefix/infix/suffix styles in Filipino since they are ubiquitous in everyday speech and writing, whether it is simple or stacked affixing.
+It doesn't perform well in English words, which is expected for a tokenizer that is trained on mainly Filipino words ~99.9% of the time. It also doesn't aim to be "morphologically accurate" like in JpCurada's case as I let the data speak to itself during training -- which merges are valuable is for BPE to decide statistically. This is because I am confident that even BPE can pick up very common prefix/infix/suffix styles in Filipino since they are ubiquitous in everyday speech and writing, whether it is simple or stacked affixing.
 
 This proof of concept is more on reducing token cost rather than achieving full linguistic coverage across all Philippine languages. 
+
+# Test Data
+All sentences are not seen during training except indicated otherwise as a quick smoke check.
+
+Sample sentences are as follows:
+1. Greeting
+   
+   > Kamusta, mga kababayan!
+
+2. Long affixes (This word is seen during training, but it acts as a sanity check on whether this model mastered it at all)
+
+   > pagpapanibagong-tatag
+
+3. The famous tongue-twister
+
+   > nakakapagpabagabag
+
+4. Number 3's sidekick
+
+   > pinakanakapagpapabagabag
+
+5. Good morning
+
+   > Magandang umaga, kapatid!
+
+6. Simple sentence
+
+   > Kumain siya ng pagkain.
+
+7. Simple question
+
+    > kumain ka na ba?
+
+8. Full sentence from [KapitBisig](https://www.kapitbisig.com/philippines/information/arts-and-literature-mga-kuwentong-bayan-folktales_190.html) (This word is seen during training, but it acts as a sanity check on whether this model mastered it at all)
+
+   > Ito ay pagsasalaysay ng mga katutubo sa kanilang paniniwalang lakas ng pisikal na kapaligiran at lakas ng pananampalataya ng lumilimbag sa kanilang buhay at kapalaran.
+
+9. Historical Wikipedia [article](https://tl.wikipedia.org/wiki/Kasaysayan_ng_Pilipinas_(1565%E2%80%931898)#Pagdating_ni_Ruy_L%C3%B3pez_de_Villalobos) sentence
+
+   > Ang unang paglalayag na pambuong mundo sa ngalan ng Espanya ay nasundan ng apat pang mga ekspedisyon mula 1525 hanggang 1542. Sa ikaapat na panggagalugad, narating ni Ruy Lopez de Villalobos ang Kapuluan ng Pilipinas at pinangalanan niya ang mga pulo mula kay Philip II na noon ay may katayuan bilang tagapagmana ng trono ng Kaharian ng Espanya, bagaman hindi pa pormal na naitatag ang Pilipinas bilang opisyal na teritoryo ng Espanya.
+
+10. Declaration of Human Rights Preamble in Filipino
+
+    > "Sapagkat ang pagkilala sa katutubong karangalan at sa pantay at di-maikakait na mga karapatan ng lahat ng nabibilang sa angkan ng tao ay siyang saligan ng kalayaan, katarungan at kapayapaan sa daigdig."
+
+11. [Patungkol](https://tl.wikipedia.org/wiki/Unang_Pahina#Patungkol) ng Wikipedia
+
+    > Ang Wikipedia ay isang proyektong online na ensiklopedya na panlahat, nakasulat sa maraming wika, at pinagtutulungan ang paggawa ng mga artikulo sa prinsipyong wiki. Naglalayon ang proyektong ito na mag-alok ng mga nilalaman na malayang muling magagamit, walang pinapanigan, at napapatunayan, na maaring baguhin at mapabuti ninuman. Nakikilala ang Wikipedia sa pamamagitan ng mga naitatag na prinsipyo. Nakalisensiya ang nilalaman nito sa ilalim ng Creative Commons BY-SA. Maari itong kopyahin at muling gamitin sa ilalim ng parehong lisensiya, na sumasailalim sa paggalang sa mga kondisyon. Ibinbigay ng Wikipedia ang mga nilalaman nito ng walang bayad, walang patalastas, at hindi nagsasamantala sa paggamit ng personal na datos ng mga gumagamit nito.
+
+12. One sentence of [Nelson Mandela's speech](https://www.tagaloglang.com/talumpati-ni-nelson-mandela/) in Filipino
+
+    > Ang ating mga nagawa bilang ordinaryong mamamayan ng Timog Africa ay kailangang magbunga ng tunay na mamamayan nito na magpapalawak sa paniniwala ng sangkatauhan sa katarungan, magpapalakas sa tiwala sa kadakilaan ng kaluluwa, at magtutustos sa lahat ng ating pag-asa sa kapakinabangan ng buhay ng lahat.
+
+13. [KMJS Article](https://www.gmanetwork.com/news/balitambayan/umg/987386/drawer-ng-cabinet-minulto-nga-ba-matapos-na-mahuli-cam-na-nagbukas-sara/story/ )
+
+    > Nabalot ng kababalaghan ang masaya sanang bonding ng magkakaibigan nang bigla na lang magbukas-sara na mag-isa sa kanilang harapan ang drawer ng isang cabinet. Ang kinaroroonan ng cabinet, isang bahay-bakasyunan na pinaparentahan at kamamatay lang umano ng may-ari.
+
+14. [BINI Article](https://bandera.inquirer.net/444456/bini-jhoanna-kinabog-weather-report-sa-good-day-la-achieve-sa-bucket-list)
+
+    > NATUPAD ang isa sa bucket list ng BINI leader na si Jhoanna Robles, habang nasa Amerika. Biglaan kasi siyang naging weather presenter nang mag-guest ang nation's girl group sa morning show na Good Day LA, kung saan una nilang ibinahagi ang kanilang makasaysayang performance sa Coachella, pati na rin ang kanilang bagong EP na Signals at nalalapit na world tour. Pero imbes na matapos lang sa chikahan, biglang nagkaroon ng nakakatuwang twist!
