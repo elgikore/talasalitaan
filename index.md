@@ -21,3 +21,36 @@ Another conundrum is that having a small context size will make monsters of a wo
 I thought, why not deal with it at the source, and compress tokens? Look at common English words in OpenAI tokenizers, there are treated as one token. If it is decomposable, maybe a few tokens at most. This is my mindset when creating a "Filipino-aware" tokenizer. The good thing is that, unlike English, prefixes/infixes/suffixes are **very** predicable and rarely has exceptions.
 
 ## Choice of Corpus
+Everybody says "you just scrape more from Common Crawl" or "curate your data", which is both true. The former understands the reality of AI as data-hungry monsters, and the latter to having representativeness and quality in the model. But what if we model the corpus similar to how a human acquires and masters a language, which is through textbooks, some history, local references, oral traditions, and culture? This is where KapitBisig comes in.
+
+The website has:
+- The four main required readings every Filipino goes through:
+  - Ibong Adarna
+  - Florante at Laura
+  - Noli Me Tangere
+  - El Filibusterismo
+- Works by Dr. Jose Rizal
+- Poetical Debate (Balagtasan)
+- Awit (Songs in a classical sense)
+- Poems (Tula)
+- Plays (Dula)
+- Parables (Parabula)
+- Legends (Alamat)
+- Epics (Epiko)
+- Myths (Mitolohiya/Mito)
+- Riddles (Bugtong)
+- Filipino Nursery Rhymes (Tugmang Tagalog)
+- Sabayang Pagbigkas (Choral Recitation is a close equivalent in English)
+- Fables (Pabula)
+- Filipino Proverbs (Salawikaing Filipino)
+- Filipino Idioms (Kawikaang Tagalog)
+- Basic Level Learn Filipino page
+- The full 1987 Constitution in Filipino
+- Short summary of each Philippine Presidents
+- Short summary of Filipino Heroes (Mga Bayani)
+
+All of these are basically what you would expect in a Filipino subject.
+
+Why did I model the corpus that way? This is because of a phenomenon in Deep Learning that even if AI cannot "understand" or "learn" in a strict sense like humans do, they do arrive at similar conclusions on average. If this logic is true, then it will hold up here. 
+
+## Data Prep
