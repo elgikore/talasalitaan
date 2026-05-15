@@ -7,6 +7,9 @@ Talasalitaan (lit. vocabulary, but usage is more like a glossary/dictionary) is 
 
 The whole code for Talasalitaan is a simple SentencePiece wrapper, but the highlight of this article is the corpora, not the architecture.
 
+* TOC
+{:toc}
+
 # Some Backstory
 I was doing an assingment for COMP423 Deep Learning subject, and one of the assignment is to build a GPT-like arctecture with only PyTorch, tokenized using GPT-2 `tiktoken` and train it on the Tiny Shakespere corpus. As I made that assignment, doing Shakespere texts is pretty analogous to doing your Rizal, Noli Me Tangere, and El Filibusterismo in Filipino textbooks. And that's where I thought, 
 
@@ -181,3 +184,111 @@ Sample sentences are as follows:
 12. `['▁Ang', '▁ating', '▁mga', '▁nagawa', '▁bilang', '▁ordin', 'aryong', '▁mamamayan', '▁ng', '▁Timog', '▁A', 'f', 'r', 'ica', '▁ay', '▁kailangang', '▁magbunga', '▁ng', '▁tunay', '▁na', '▁mamamayan', '▁nito', '▁na', '▁magpap', 'alawak', '▁sa', '▁paniniwala', '▁ng', '▁sangkatauhan', '▁sa', '▁katarungan', ',', '▁magpap', 'alakas', '▁sa', '▁tiwala', '▁sa', '▁kadakilaan', '▁ng', '▁kaluluwa', ',', '▁at', '▁magtut', 'ustos', '▁sa', '▁lahat', '▁ng', '▁ating', '▁pag', '-', 'asa', '▁sa', '▁kapakinabangan', '▁ng', '▁buhay', '▁ng', '▁lahat', '.']`
 13. `['▁Nab', 'alot', '▁ng', '▁kababalaghan', '▁ang', '▁masaya', '▁sanang', '▁b', 'on', 'ding', '▁ng', '▁magkakaibigan', '▁nang', '▁bigla', '▁na', '▁lang', '▁magbukas', '-', 's', 'ara', '▁na', '▁mag', '-', 'isa', '▁sa', '▁kanilang', '▁harapan', '▁ang', '▁dr', 'aw', 'er', '▁ng', '▁isang', '▁c', 'abin', 'et', '.', '▁Ang', '▁kinaroroonan', '▁ng', '▁c', 'abin', 'et', ',', '▁isang', '▁bahay', '-', 'bakasyunan', '▁na', '▁pinap', 'ar', 'ent', 'ahan', '▁at', '▁kam', 'amatay', '▁lang', '▁umano', '▁ng', '▁may', '-', 'ari', '.']`
 14. `['▁N', 'AT', 'UP', 'AD', '▁ang', '▁isa', '▁sa', '▁bu', 'c', 'ket', '▁l', 'ist', '▁ng', '▁B', 'INI', '▁le', 'ad', 'er', '▁na', '▁si', '▁J', 'ho', 'an', 'na', '▁R', 'ob', 'les', ',', '▁habang', '▁nasa', '▁Amerika', '.', '▁B', 'igl', 'aan', '▁kasi', '▁siyang', '▁naging', '▁w', 'eat', 'h', 'er', '▁pres', 'enter', '▁nang', '▁mag', '-', 'g', 'uest', '▁ang', '▁nat', 'ion', "'", 's', '▁g', 'ir', 'l', '▁g', 'ro', 'up', '▁sa', '▁m', 'orn', 'ing', '▁s', 'h', 'ow', '▁na', '▁G', 'ood', '▁Day', '▁L', 'A', ',', '▁kung', '▁saan', '▁una', '▁nilang', '▁ibin', 'ahagi', '▁ang', '▁kanilang', '▁makasaysayang', '▁per', 'f', 'or', 'man', 'ce', '▁sa', '▁Co', 'ach', 'el', 'la', ',', '▁pati', '▁na', '▁rin', '▁ang', '▁kanilang', '▁bagong', '▁E', 'P', '▁na', '▁"', 'Sig', 'nal', 's', '"', '▁at', '▁nal', 'alapit', '▁na', '▁w', 'or', 'l', 'd', '▁to', 'ur', '.', '▁Pero', '▁imb', 'es', '▁na', '▁matapos', '▁lang', '▁sa', '▁c', 'hik', 'ahan', ',', '▁biglang', '▁nagkaroon', '▁ng', '▁nakakat', 'uwang', '▁t', 'w', 'ist', '!']`
+
+## First and last 100 tokens
+|  First 100 | Last 100 |
+| ------------- | ------------- |
+| ng	0	| ▁napasabihan	-32594
+| ang	-1 |	▁napipinsala	-32595
+| an	-2 |	▁napipintong	-32596
+| ▁n	-3 |	▁napuluputan	-32597
+| ▁s	-4 |	▁napupuhunan	-32598
+| at	-5 |	▁nararanasan	-32599
+| ag	-6 |	Pepe	-32600
+| ▁m	-7 |	Sari	-32601
+| al	-8 |	Totoo	-32602
+| in	-9 |	ipala	-32603
+| ay	-10 |	lagda	-32604
+| ▁k	-11 |	nahan	-32605
+| ▁p	-12 |	▁Laws	-32606
+| ▁ng	-13 |	▁tuba	-32607
+| ▁sa	-14 |	▁utal	-32608
+| ▁na	-15 |		abasan	-32609
+| ▁ang	-16 |		ihimay	-32610
+| ak	-17 |		ilipos	-32611
+| it	-18 |		lahing	-32612
+| as	-19	 |	sakong	-32613
+| il	-20	 |	uester	-32614
+| am	-21 |		unsini	-32615
+| ar	-22 |		▁Unawa	-32616
+| ap	-23 |		▁iigsi	-32617
+| ing	-24 |		▁lilik	-32618
+| ▁b	-25 |		▁tabug	-32619
+| ong	-26 |		▁tubis	-32620
+| ah	-27 |		▁Niluto	-32621
+| aw	-28 |		▁Sybyla	-32622
+| iy	-29 |		▁bagsak	-32623
+| ab	-30 |		▁inihim	-32624
+| ▁at	-31 |		▁langka	-32625
+| ▁d	-32 |		▁legwas	-32626
+| ▁t	-33 |		▁saksak	-32627
+| ▁l	-34 |		▁sugong	-32628
+| ga	-35 |		▁Kaipala	-32629
+| ul	-36 |		▁Matulin	-32630
+| is	-37 |		▁Nakakap	-32631
+| ▁mga	-38 |		▁Panitik	-32632
+| on	-39 |		▁hihimay	-32633
+| ▁ay	-40 |		▁ikahiya	-32634
+| ▁A	-41 |		▁inuunan	-32635
+| un	-42 |		▁madilig	-32636
+| um	-43 |		▁masilip	-32637
+| ▁h	-44 |		▁nahilig	-32638
+| ig	-45 |		▁naitala	-32639
+| ▁S	-46 |		▁palatok	-32640
+| ▁pag	-47 |		▁tinapon	-32641
+| ▁P	-48 |		▁tubigan	-32642
+| ad	-49 |		▁umampon	-32643
+| ik	-50 |		amamalagi	-32644
+| ▁N	-51 |		▁Alunsini	-32645
+| ▁K	-52 |		▁Dimatiga	-32646
+| ▁M	-53 |		▁Pagsipot	-32647
+| ib	-54 |		▁bahalang	-32648
+| iya	-55 |		▁dadalhan	-32649
+| ung	-56 |		▁kainipan	-32650
+| ip	-57 |		▁magbalag	-32651
+| ▁kan	-58 |		▁maputing	-32652
+| ▁I	-59 |		▁maunahan	-32653
+| ▁mag	-60 |		▁nakasiya	-32654
+| ▁nag	-61 |		▁paglilip	-32655
+| ▁si	-62 |		▁pasyente	-32656
+| ▁ni	-63 |		▁Hinagupit	-32657
+| ▁g	-64 |		▁kaikalawa	-32658
+| us	-65 |		▁lilikumin	-32659
+| ito	-66 |		▁nakatawag	-32660
+| ▁D	-67 |		▁nakatungo	-32661
+| im	-68 |		▁nakilaban	-32662
+| ut	-69 |		▁nalilipos	-32663
+| ▁Ang	-70 |		▁pagtaghoy	-32664
+| ▁is	-71 |		▁Naglabasan	-32665
+| ala	-72 |		▁Nakakapaso	-32666
+| di	-73 |		▁Napakabuti	-32667
+| ▁B	-74 |		▁kabulukang	-32668
+| uh	-75 |		▁maitimbang	-32669
+| ilang	-76 |		▁nagparungg	-32670
+| uk	-77 |		▁nagtatahan	-32671
+| ▁T	-78 |		▁nakatataas	-32672
+| os	-79 |		▁napaloloko	-32673
+| er	-80 |		▁pamilihang	-32674
+| ▁kany	-81 |		▁saliksikin	-32675
+| apat	-82 |		▁sumusulong	-32676
+| and	-83 |		▁(1971-1972)	-32677
+| ▁H	-84 |		▁inihimatong	-32678
+| up	-85 |		▁naririmarim	-32679
+| ari	-86 |		▁narurumihan	-32680
+| or	-87 |		▁nasaksihang	-32681
+| indi	-88 |		▁nasasabugan	-32682
+| ila	-89 |		▁nasasangkap	-32683
+| ▁L	-90 |		▁nasusubukan	-32684
+| ▁isang	-91 |		▁nasusuungan	-32685
+| ub	-92 |		▁nataguriang	-32686
+| ▁"	-93 |		▁natambangan	-32687
+| ▁kanyang	-94 |		▁natatagalan	-32688
+| ▁nang	-95 |		▁natitigatig	-32689
+| uw	-96 |		▁natititigan	-32690
+| en	-97 |		▁natuklasang	-32691
+| ur	-98 |		▁natutularan	-32692
+| ot	-99	 |	▁natutulayan	-32693
+| ▁siya	-100 |		▁natututuhan	-32694
+
+> [!NOTE]
+> It is interesting that at the tail end of the `.vocab` file, it still produced meaningful tokens for most of them.
