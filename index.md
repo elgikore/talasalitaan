@@ -4,13 +4,13 @@ layout: page
 ---
 
 
-Talasalitaan (lit. vocabulary, but usage is more like a glossary/dictionary) is a vanilla BPE model from SentencePiece trained on the [KapitBisig](https://www.kapitbisig.com/philippines) site, using only Filipino as much as possible. The entire corpus is just 1.3 MB, but as this page will show later on, it is surprisingly performant. Token counts are also reduced.
+Talasalitaan (lit. vocabulary, but usage is more like a glossary/dictionary) is a vanilla BPE model from SentencePiece trained on the [KapitBisig](https://www.kapitbisig.com/philippines) site, using only Filipino as much as possible and a vocabulary size of 32,768. The entire corpus is just 1.3 MB, but as this page will show later on, it is surprisingly performant. Token counts are also reduced. I also added a [translation in the word "tokenization"](https://github.com/elgikore/talasalitaan/edit/main/index.md#bonus-pagpapapanlapi-as-a-filipino-term-for-tokenization) if I were to name it.
 
 The whole code for Talasalitaan is a simple SentencePiece wrapper, but the highlight of this article is the corpora, not the architecture.
 
 <details>
 <summary>Table of Contents</summary>
-  
+
 - [Some Backstory](#some-backstory)
 - [Data](#data)
   * [Choice of Corpus](#choice-of-corpus)
@@ -30,7 +30,7 @@ The whole code for Talasalitaan is a simple SentencePiece wrapper, but the highl
 - [Bonus: *Pagpapapanlapi* as a Filipino Term for Tokenization](https://github.com/elgikore/talasalitaan/edit/main/index.md#bonus-pagpapapanlapi-as-a-filipino-term-for-tokenization)
 
 </details>
-
+<br>
 
 # Some Backstory
 I was doing an assingment for COMP423 Deep Learning subject, and one of the assignment is to build a GPT-like arctecture with only PyTorch, tokenized using GPT-2 `tiktoken` and train it on the Tiny Shakespere corpus. As I made that assignment, doing Shakespere texts is pretty analogous to doing your Rizal, Noli Me Tangere, and El Filibusterismo in Filipino textbooks. And that's where I thought, 
@@ -56,24 +56,24 @@ The website has:
   - Noli Me Tangere
   - El Filibusterismo
 - Works by Dr. Jose Rizal
-- Poetical Debate (Balagtasan)
-- Awit (Songs in a classical sense)
-- Poems (Tula)
-- Plays (Dula)
-- Parables (Parabula)
-- Legends (Alamat)
-- Epics (Epiko)
-- Myths (Mitolohiya/Mito)
-- Riddles (Bugtong)
-- Filipino Nursery Rhymes (Tugmang Tagalog)
-- Sabayang Pagbigkas (Choral Recitation is a close equivalent in English)
+- Poetical Debate (*Balagtasan*)
+- *Awit* (Songs in a classical sense)
+- Poems (*Tula*)
+- Plays (*Dula*)
+- Parables (*Parabula*)
+- Legends (*Alamat*)
+- Epics (*Epiko*)
+- Myths (*Mitolohiya/Mito*)
+- Riddles (*Bugtong*)
+- Filipino Nursery Rhymes (*Tugmang Tagalog*)
+- *Sabayang Pagbigkas* (Choral Recitation is a close equivalent in English)
 - Fables (Pabula)
-- Filipino Proverbs (Salawikaing Filipino)
-- Filipino Idioms (Kawikaang Tagalog)
+- Filipino Proverbs (*Salawikaing Filipino*)
+- Filipino Idioms (*Kawikaang Tagalog*)
 - Basic Level Learn Filipino page
 - The full 1987 Constitution in Filipino
 - Short summary of each Philippine Presidents
-- Short summary of Filipino Heroes (Mga Bayani)
+- Short summary of Filipino Heroes (*Mga Bayani*)
 
 All of these are basically what you would expect in a Filipino subject.
 
@@ -88,7 +88,7 @@ For the handling of Spanish diacritics, all of them are removed with the excepti
 
 For the required readings, all of them are book summaries because the original books use the old Filipino orthography system. Some examples are n͠g for "ng" and frequent use of Spanish-influnenced orthography like *cuarto* for *kwarto* (room). Even if the Spanish-influnenced orthography of old Filipino spellings are pronounced exactly the same as their modern spelling, it is laborious to replace it with modern spellng styles and risking corrupting the text. The only exception to this rule is Florante at Laura, which conveniently has the original book in modern Filipino orthography. I used both the original book and the book summary for this as a result.
 
-Weird spacing like "  " is corrected (" "), tab spaces are stripped, unicode elipsis ("…") is expanded to "...", and the "/"'s in Sabayang Pagbigkas are removed because it is frequently occuring, which might bias the BPE. All upper and lowercase are preserved.
+Weird spacing like "  " is corrected (" "), tab spaces are stripped, unicode elipsis ("…") is expanded to "...", and the "/"'s in *Sabayang Pagbigkas* are removed because it is frequently occuring, which might bias the BPE. All upper and lowercase are preserved.
 
 # Some RRL
 Initially, I was going to compare mine with GPT-2 and GPT-4o tokenizers to test performance, as I don't believe that there is a specialized Filipino tokenizer. But for completeness sake, I researched "Filipino Tokenizers" on GitHub, and it actually has results, but only one fits the idea which is JpCurada's [`filipino-tokenizer`](https://github.com/JpCurada/filipino-tokenizer). It describes itself as the "first open-source, morphologically-aware subword tokenize for Philippine languages". It is a BPE with handwritten rules for prefixes/infixes/suffixes made in Python and part Rust. The presence of this repo alone makes it possible to compare apples to apples with aside from apples to green apples (not oranges as OpenAI GPT models use BPE).
