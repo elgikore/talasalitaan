@@ -2,3 +2,5 @@ theme: minima
 markdown: GFM
 kramdown:
   input: GFM
+plugins:
+  - jekyll-sitemap
