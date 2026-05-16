@@ -616,4 +616,13 @@ Etymology:
 
 The literal translation would be: "someone or a system doing/creating affix-like structures repeatedly" compressed in one long word.
 
-Aside from that, the words tokenization and tokenizer can be rendered in Filipino orthography as *tokenisasyon* and *tokenisador* as synonyms respectively.
+Aside from that, the words tokenization and tokenizer can be rendered in Filipino orthography as *tokenisasyon* and *tokenisador* as synonyms respectively. 
+
+Another more natural rendering of *tokenisador* is *pagtotokenisa*.
+
+Etymology:
+* *pag-* = to make/cause
+* *-to-* = Doing (something) repeatedly (duplicate *to*)
+* *tokenisa* = shortened form of *tokenisador*, verb form
+
+This literally means "to make tokens" with implied "someone doing it" because of the borrowed word.
