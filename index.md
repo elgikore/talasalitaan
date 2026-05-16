@@ -8,9 +8,6 @@ Talasalitaan (lit. vocabulary, but usage is more like a glossary/dictionary) is 
 
 The whole code for Talasalitaan is a simple SentencePiece wrapper, but the highlight of this article is the corpora, not the architecture.
 
-<details>
-<summary>Table of Contents</summary>
-
 - [Some Backstory](#some-backstory)
 - [Data](#data)
   * [Choice of Corpus](#choice-of-corpus)
@@ -27,9 +24,8 @@ The whole code for Talasalitaan is a simple SentencePiece wrapper, but the highl
   * [Tokens Used and Word-to-Token Ratio](#tokens-used-and-word-to-token-ratio)
   * [Inspecting Token Generation and Token Dictionary](#inspecting-token-generation-and-token-dictionary)
 - [Conclusion](#conclusion)
-- [Bonus: *Pagpapapanlapi* as a Filipino Term for Tokenization](https://github.com/elgikore/talasalitaan/edit/main/index.md#bonus-pagpapapanlapi-as-a-filipino-term-for-tokenization)
+- [Bonus: *Pagpapapanlapi* as a Filipino Term for Tokenization](#bonus-pagpapapanlapi-as-a-filipino-term-for-tokenization)
 
-</details>
 <br>
 
 # Some Backstory
