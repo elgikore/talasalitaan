@@ -3,12 +3,12 @@ title: Talasalitaan, or How Did a Tokenizer Performed Suprisingly Well on Corpor
 layout: page
 ---
 
+* TOC
+{:toc}
+
 Talasalitaan (lit. vocabulary, but usage is more like a glossary/dictionary) is a vanilla BPE model from SentencePiece trained on the [KapitBisig](https://www.kapitbisig.com/philippines) site, using only Filipino as much as possible. The entire corpus is just 1.3 MB, but as this page will show later on, it is surprisingly performant. Token counts are also reduced.
 
 The whole code for Talasalitaan is a simple SentencePiece wrapper, but the highlight of this article is the corpora, not the architecture.
-
-* TOC
-{:toc}
 
 # Some Backstory
 I was doing an assingment for COMP423 Deep Learning subject, and one of the assignment is to build a GPT-like arctecture with only PyTorch, tokenized using GPT-2 `tiktoken` and train it on the Tiny Shakespere corpus. As I made that assignment, doing Shakespere texts is pretty analogous to doing your Rizal, Noli Me Tangere, and El Filibusterismo in Filipino textbooks. And that's where I thought, 
@@ -537,3 +537,36 @@ Another reason why `filipino-tokenizer` bloats more tokens is that both morpheme
 In conclusion, Talasalitaan has a strong generalization on Filipino, but knows what its boundaries are, as seen in the BINI article and any English words — it fragments them like how English-centric tokenizers fragment non-English words.
 
 ## Inspecting Token Generation and Token Dictionary
+Checking the tokens that are not whole words... I'm speechless:
+
+|  Talasalitaan | Correct Alignment/Syllable Split |
+| ------------- | ------------- |
+| `['▁Kam', 'usta']` | Ka-musta
+| `['▁pagpap', 'anibagong']` | pagpapa-nibagong
+| `['▁nakak', 'apagp', 'abagabag']` | nakaka-pagpa-bagabag
+| `['▁pinakan', 'ak', 'ak', 'apagp', 'abagabag']` | pinaka-na-ka-ka-pagpa-bagabag
+| `['▁Lopez', '▁de', '▁Vill', 'al', 'ob', 'os']` | Lopez de Villa-lo-bos
+| `['▁eks', 'p', 'ed', 'isyon']` | eks-pe-disyon
+| `['▁pamb', 'uong']` | pam-buong
+| `['ma', 'ik', 'aka', 'it']` | ma-i-kaka-it
+| `['▁proy', 'ekt', 'ong']` | pro-yek-tong
+| `['▁ar', 'tik', 'ulo']` | ar-ti-kulo
+| `['▁mag', '-', 'g', 'uest']` | mag-guest
+| `['▁c', 'hik', 'ahan']` | chi-ka-han
+| `['▁B', 'igl', 'aan']` | Big-laan
+| `['▁lum', 'ilimbag',]` | lumi-limbag
+| `['▁pangg', 'agal', 'ugad']` | pang-gaga-lugad
+| `['▁pat', 'alastas']` | pa-talastas
+| `[▁Nak', 'alis', 'ensiya',]` | Naka-li-sensya
+| `['▁pinapan', 'igan']` | pinapa-nigan
+| `['▁nagsas','amantala']` | nagsasa-mantala
+| `['▁ordin', 'aryong']` | ordi-naryong
+| `['▁N', 'AT', 'UP', 'AD']` | NA-TU-PAD
+| `['▁B', 'INI']` | BI-NI
+| `['▁J', 'ho', 'an', 'na', '▁R', 'ob', 'les']` | Jho-an-na Ro-bles
+
+This is very close to real syllable splits, even if not perfect. And the crazy part? It learned by pure frequency statistics — very similar to "LLMs looking like they understand things", but on a tokenizer scale. This is a very strong case of Talasalitaan generalizing to words not found in its corpus, and it is important to keep in mind that it is case-sensitive, which makes it more impressive. It's as if it "knows" Filipino word constructions. 
+
+The surprising part, it knows how to syllabicate/split BINI (pronounced BEE-NEE or BEANIE), a very recent P-Pop group that had gone to Coachella, even if the training corpus is just a compressed Filipino textbook. Moreover, even the name `['▁J', 'ho', 'an', 'na', '▁R', 'ob', 'les']` is very close, despite the tokenizer not knowing that Robles is a super common Filipino surname and Jhoanna is a alterante version of Johanna, which the latter is also a common Filipino first name. If my corpus had the name "Robles", it would most likely be one word due to the sheer amount of people having that name, both in literature and in real life.
+
+Inspecting the dictionary reveals that the first 100 tokens are very common Filipino prefix/infix/suffixes and linkage verbs. This is expected. What is not however is that even on the tail end of the dictionary, most of them are legitimate Filipino text or valid affix stacking. For comparison, GPT-2's tail end is just gibberish, not valid English words nor affixes.
