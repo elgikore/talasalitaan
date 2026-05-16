@@ -596,7 +596,7 @@ A simple model generalizes well than a complex model with many tricks, which is 
 
 Lastly, data representability matters even more on languages like Filipino, where it lags far behind in ML/AI. This gap cannot be remedied with just using a English-based tokenizer, but rather a native solution aligned with Filipino morphology.  English does not even have infixes, so it makes little sense to use a tokenizer that has English morphological assumptions when modelling a language that uses infixes productively. By tuning the tokenizer to the language it was made to represent, an underepresented language can be as comparable as English in terms of performance, since it is tuned to their linguistic structure, which affects LLM inference down the line.
 
-# Bonus: *Pagpapapanlapi* as a Filipino Term for Tokenization
+# Bonus: Pagpapapanlapi as a Filipino Term for Tokenization 
 If I were to translate "tokenization" in Filipino, it would be *pagpapapanlapi*. 
 
 Etymology:
