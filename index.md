@@ -597,11 +597,23 @@ A simple model generalizes well than a complex model with many tricks, which is 
 Lastly, data representability matters even more on languages like Filipino, where it lags far behind in ML/AI. This gap cannot be remedied with just using a English-based tokenizer, but rather a native solution aligned with Filipino morphology.  English does not even have infixes, so it makes little sense to use a tokenizer that has English morphological assumptions when modelling a language that uses infixes productively. By tuning the tokenizer to the language it was made to represent, an underepresented language can be as comparable as English in terms of performance, since it is tuned to their linguistic structure, which affects LLM inference down the line.
 
 # Bonus: *Pagpapapanlapi* as a Filipino Term for Tokenization
-If I were to translate Tokenization in Filipino, it would be *pagpapapanlapi*. 
+If I were to translate "tokenization" in Filipino, it would be *pagpapapanlapi*. 
 
 Etymology:
 * *Pagpa-* = To cause/do
 * *-pa-* = Doing (something) repeatedly (duplicate *pa*)
 * *panlapi* = Affix (since BPE or Unigram does affix-like merges)
 
-The literal translation would be: "doing/creating affix-like structures repeatedly". 
+The literal translation would be: "doing/creating affix-like structures repeatedly".
+
+The equivalent, "tokenizer", is *tagapagpapapanlapi*. Mouthful but very accurate.
+
+Etymology:
+* *Taga-* = Someone that does
+* *-pagpa-* = To cause/do
+* *-pa-* = Doing (something) repeatedly (duplicate *pa*)
+* *panlapi* = Affix (since BPE or Unigram does affix-like merges)
+
+The literal translation would be: "someone or a system doing/creating affix-like structures repeatedly" compressed in one long word.
+
+Aside from that, the words tokenization and tokenizer can be rendered in Filipino orthography as *tokenisasyon* and *tokenisador* as synonyms respectively.
