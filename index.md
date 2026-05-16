@@ -4,7 +4,7 @@ layout: page
 ---
 
 
-Talasalitaan (lit. vocabulary, but usage is more like a glossary/dictionary) is a vanilla BPE model from SentencePiece trained on the [KapitBisig](https://www.kapitbisig.com/philippines) site, using only Filipino as much as possible and a vocabulary size of 32,768. The entire corpus is just 1.3 MB, but as this page will show later on, it is surprisingly performant. Token counts are also reduced. I also added a [translation in the word "tokenization"](https://github.com/elgikore/talasalitaan/edit/main/index.md#bonus-pagpapapanlapi-as-a-filipino-term-for-tokenization) if I were to name it.
+Talasalitaan (lit. vocabulary, but usage is more like a glossary/dictionary) is a vanilla BPE model from SentencePiece trained on the [KapitBisig](https://www.kapitbisig.com/philippines) site, using only Filipino as much as possible and a vocabulary size of 32,768. The entire corpus is just 1.3 MB, but as this page will show later on, it is surprisingly performant. Token counts are also reduced. I also added a [translation in the word "tokenization"](#bonus-pagpapapanlapi-as-a-filipino-term-for-tokenization) if I were to name it.
 
 The whole code for Talasalitaan is a simple SentencePiece wrapper, but the highlight of this article is the corpora, not the architecture.
 
