@@ -1,5 +1,7 @@
 ---
 title: Talasalitaan, or How Did a Tokenizer Performed Suprisingly Well on Corpora Roughly the Size of Tiny Shakespere
+description: "A Filipino tokenizer trained on one website."
+keywords: "tokenization, KapitBisig, Filipino NLP, BPE, pagpapapanlapi, tagapagpapapanlapi, Talasalitaan"
 layout: page
 ---
 
@@ -24,7 +26,7 @@ The whole code for Talasalitaan is a simple SentencePiece wrapper, but the highl
   * [Tokens Used and Word-to-Token Ratio](#tokens-used-and-word-to-token-ratio)
   * [Inspecting Token Generation and Token Dictionary](#inspecting-token-generation-and-token-dictionary)
 - [Conclusion](#conclusion)
-- [Bonus: *Pagpapapanlapi* as a Filipino Term for Tokenization](#bonus-pagpapapanlapi-as-a-filipino-term-for-tokenization)
+- [Bonus: Pagpapapanlapi as a Filipino Term for Tokenization](#bonus-pagpapapanlapi-as-a-filipino-term-for-tokenization)
 
 <br>
 
