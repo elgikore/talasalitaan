@@ -534,7 +534,7 @@ Sample sentences are as follows:
 ## Tokens Used and Word-to-Token Ratio
 For the sample sentences, Talasalitaan consistently showed huge reductions on token savings despite being trained on just one site, with the only sentence that it struggled with is the BINI article sentence, which is full of Taglish construction and pure English words, something GPT-4o had the upper edge in token count due to how it is trained on English corpora. 
 
-The most interesting part is that filipino-tokenizer behaved pretty differently on alternative spelling of *pinakanakakapagpabagabag*, which is *pinakanakapagpapabagabag*. I thought I made a typo on it because it is so long, so I corrected it (all results above use *pinakanakakapagpabagabag*), but it is actually a variation when I double-checked on a Filipino dictionary. Look:
+The most interesting part is that `filipino-tokenizer` behaved pretty differently on alternative spelling of *pinakanakakapagpabagabag*, which is *pinakanakapagpapabagabag*. I thought I made a typo on it because it is so long, so I corrected it (all results above use *pinakanakakapagpabagabag*), but it is actually a variation when I double-checked on a Filipino dictionary. Look:
 
 *pinakanakapagpapabagabag* (variational spelling):
 
